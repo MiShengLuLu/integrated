@@ -10,10 +10,16 @@ function useHelperModule () {
 
 const Home = () => {
   const helperModule = useHelperModule()
-  if (helperModule) {
-    helperModule.publicApiFunction('@integrate/react')
-  }
-  return <div>Home works</div>
+  
+  useEffect(() => {
+    let subjection = null
+    if (helperModule) {
+      helperModule.publicApiFunction('@integrate/react')
+      subjection = helperModule.sharedSubject.subscribe(console.log)
+    }
+    // return () => subjection.unsubscribe()
+  }, [helperModule])
+  return <div>Home works <button onClick={() => helperModule.sharedSubject.next('hello world')}>按钮</button></div>
 }
 
 export default Home

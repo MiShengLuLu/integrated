@@ -28,6 +28,10 @@ export default {
       const { publicApiFunction } = await window.System.import('@integrated/helper')
       publicApiFunction('@integrated/vue3')
     }
+  },
+  async mounted () {
+    const { sharedSubject } = await window.System.import('@integrated/helper')
+    sharedSubject.subscribe(console.log)
   }
 }
 </script>
