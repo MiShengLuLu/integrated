@@ -3,6 +3,7 @@
     <parcel :config="config" :mountParcel="mountParcel" />
     <router-link to="/foo">foo</router-link>
     <router-link to="/bar">bar</router-link>
+    <button @click="handleClick">按钮</button>
   </div>
   <router-view></router-view>
 </template>
@@ -20,6 +21,12 @@ export default {
     return {
       config: window.System.import('@integrated/navbar'),
       mountParcel: mountRootParcel
+    }
+  },
+  methods: {
+    async handleClick () {
+      const { publicApiFunction } = await window.System.import('@integrated/helper')
+      publicApiFunction('@integrated/vue3')
     }
   }
 }
